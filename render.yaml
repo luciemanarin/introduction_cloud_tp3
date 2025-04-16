@@ -13,7 +13,7 @@ services:
     env: node
 
     buildCommand: "npm install"
-    startCommand: "node ./bin/www"
+    startCommand: "npm start"
     envVars:
       - key: DATABASE_URL
         fromService:
