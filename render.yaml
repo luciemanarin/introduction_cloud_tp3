@@ -1,0 +1,22 @@
+# Blueprint specification: https://render.com/docs/blueprint-spec
+
+services:
+  - type: pserv 
+    name: mydatabase 
+    region: frankfurt 
+    plan: free 
+
+  - type: web 
+    name: mywebapp
+    region: frankfurt 
+    plan: free 
+    env: node
+
+    buildCommand: "npm install"
+    startCommand: "node ./bin/www"
+    envVars:
+      - key: DATABASE_URL 
+        fromService: 
+          type: pserv 
+          name: mydatabase 
+          property: connectionString 
