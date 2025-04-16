@@ -1,21 +1,24 @@
 # Blueprint specification: https://render.com/docs/blueprint-spec
-
 services:
-  - type: pserv
-    name: mydatabase
-    region: frankfurt
-    plan: free
-
   - type: web
     name: mywebapp
     region: frankfurt
+    runtime: node
+    repo: https://github.com/luciemanarin/introduction_cloud_tp3.git
     plan: free
     env: node
-
     buildCommand: "npm install"
     startCommand: "npm start"
     envVars:
       - key: DATABASE_URL
-        fromService:
+        fromDatabase:
           name: mydatabase
           property: connectionString
+
+databases:
+  - name: mydatabase
+    region: frankfurt
+    plan: free 
+    
+
+    
